@@ -1,0 +1,9 @@
+declare
+	emp_name varchar(50);
+	d_name varchar(50);
+begin
+  	emp_procedure(7369, emp_name, d_name);
+	dbms_output.put_line(emp_name);
+	dbms_output.put_line(d_name);
+end;
+/

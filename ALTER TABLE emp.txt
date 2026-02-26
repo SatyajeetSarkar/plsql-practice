@@ -1,0 +1,7 @@
+ALTER TABLE emp
+ADD CONSTRAINT fk_dept
+FOREIGN KEY (deptno)
+REFERENCES dept (deptno);
+
+
+select dname from dept d join emp e on e.deptno = d.deptno where d.dname = 'sales';

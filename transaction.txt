@@ -1,0 +1,60 @@
+// Transaction using simple pl/sql
+
+declare
+	amount number := 5000;
+	s_acc_no number := 1001;
+	s_balance number;
+	r_acc_no number := 1002;
+	r_status varchar(10);
+	r_balance number;
+
+	balance_error exception;
+	user_inactive exception;
+
+begin
+	select balance
+	into s_balance
+	from bank
+	where acc_no = s_acc_no;
+
+	if s_balance < amount then
+		raise balance_error;
+	else
+		select balance, status
+		into r_balance, r_status
+		from bank where acc_no = r_acc_no;
+
+		if r_status = 'active' then
+			update bank
+			set balance = balance + amount
+			where acc_no = r_acc_no;
+
+			if sql%rowcount = 1 then
+				update bank
+				set balance = balance - amount
+				where acc_no = s_acc_no;
+
+				if sql%rowcount = 1 then
+					dbms_output.put_line('Transfer complete');
+					commit;
+				end if;
+			end if;
+		else
+			raise user_inactive;
+		end if;
+	end if;
+
+exception
+	when balance_error then
+		rollback;
+		dbms_output.put_line('Insufficient balance');
+
+	when user_inactive then
+		rollback;
+		dbms_output.put_line('User inactive');
+	
+	when others then
+		rollback;
+		dbms_output.put_line('Transaction failed');
+end;
+	
