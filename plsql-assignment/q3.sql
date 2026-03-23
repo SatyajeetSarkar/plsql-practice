@@ -1,6 +1,6 @@
 set serveroutput on;
 DECLARE
-    a INT;
+    a number;
 BEGIN
     a := &a;
     IF a > 3000 THEN

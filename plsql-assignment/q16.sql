@@ -6,10 +6,7 @@ is
 begin
 	select count(*)
 	into emp_count
-	from emp e
-	join dept d
-		on d.deptno = e.deptno
-	where d.deptno = dept_no;
+	from emp where deptno = dept_no;
 
 	return emp_count;
 end;
