@@ -1,3 +1,4 @@
+set serveroutput on;
 create or replace function total_salary_dept (dept_name varchar2)
 	return number
 is
@@ -22,5 +23,5 @@ begin
 	salary := total_salary_dept('SALES');
 	dbms_output.put_line(salary);
 end;
-
+/
 */

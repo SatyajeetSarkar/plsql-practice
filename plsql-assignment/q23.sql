@@ -1,3 +1,4 @@
+set serveroutput on;
 declare
     cursor emp_cursor is
         select empno, sal

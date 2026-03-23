@@ -1,3 +1,4 @@
+set serveroutput on;
 create or replace procedure emp_entry(
 	emp_no in emp.empno%TYPE,
 	emp_name in emp.ename%TYPE

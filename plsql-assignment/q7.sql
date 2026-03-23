@@ -1,3 +1,4 @@
+set serveroutput on;
 declare
 	num number := &num;
 	rev number := 0;

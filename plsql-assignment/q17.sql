@@ -1,3 +1,4 @@
+set serveroutput on;
 create or replace function calc_bonus (emp_no in number)
 	return number
 is
@@ -19,5 +20,6 @@ begin
 	bonus := calc_bonus (7369);
 	dbms_output.put_line(bonus);
 end;
+/
 */
 	

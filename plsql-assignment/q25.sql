@@ -1,3 +1,4 @@
+set serveroutput on;
 declare
 	cursor emp_cursor is (
 		select *
@@ -15,6 +16,8 @@ declare
 	v_deptno emp.deptno%TYPE;
 begin
 	open emp_cursor;
+	dbms_output.put_line('EmpNo  Name  Salary  Job  DeptNo');
+	dbms_output.put_line('-----------------------------------');
 	loop
 		fetch emp_cursor into v_empno, v_ename, v_sal, v_job, v_deptno;
 		if emp_cursor%NOTFOUND then

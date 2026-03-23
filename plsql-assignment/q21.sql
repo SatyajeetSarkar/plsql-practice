@@ -1,9 +1,11 @@
+set serveroutput on;
 declare
 	cursor emp_cursor is (select ename, sal from emp);
 	v_name emp.ename%TYPE;
 	v_sal emp.sal%TYPE;
 begin
 	open emp_cursor;
+		dbms_output.put_line('Name' || ' ' || 'Salary');
 		loop
 			fetch emp_cursor into v_name, v_sal;
 			if emp_cursor%NOTFOUND then

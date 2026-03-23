@@ -1,3 +1,4 @@
+set serveroutput on;
 create or replace procedure emp_dis(
 	emp_no in emp.empno%TYPE,
 	emp_name out emp.ename%TYPE,
@@ -12,8 +13,7 @@ begin
 	on emp.deptno = dept.deptno
 	where emp.empno = emp_no;
 
-	dbms_output.put_line('Name: ' || emp_name);
-	dbms_output.put_line('Dept Name: ' || dept_name);
+	dbms_output.put_line('Name: ' || emp_name || ' | ' || 'Dept Name: ' || dept_name);
 end;
 /
 

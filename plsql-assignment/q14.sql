@@ -1,9 +1,10 @@
+set serveroutput on;
 create or replace procedure emp_grade (
 	dept_no in emp.deptno%TYPE
 )
 as
 begin
-	DBMS_OUTPUT.PUT_LINE('grade   emp_count');
+	DBMS_OUTPUT.PUT_LINE('Grade   Emp_count');
     	
 	for rec in (
 		select s.grade, count(*) emp_count 
@@ -24,5 +25,5 @@ end;
 begin
   	emp_grade (20);
 end;
-
+/
 */

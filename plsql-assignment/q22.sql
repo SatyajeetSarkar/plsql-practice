@@ -1,3 +1,4 @@
+set serveroutput on;
 DECLARE
     CURSOR c_emp IS
         SELECT empno, ename, job

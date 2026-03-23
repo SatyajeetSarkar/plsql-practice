@@ -1,12 +1,13 @@
+set serveroutput on;
 create or replace function calculate_age (p_emp_id in number)
 	return number
 is
-	dob emp.hiredate%TYPE;
+	dob employ.dob%TYPE;
 	age number;
 begin
-	select hiredate
+	select dob
 	into dob
-	from emp
+	from employ
 	where empno = p_emp_id;
 	
 	age := trunc(months_between(sysdate, dob) / 12);
@@ -22,4 +23,5 @@ begin
 	age := calculate_age (7369);
 	dbms_output.put_line(age);
 end;
+/
 */

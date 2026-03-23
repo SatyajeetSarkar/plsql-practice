@@ -7,6 +7,6 @@ BEGIN
         sum_odd := sum_odd + (2 * i - 1);
     END LOOP;
 
-    DBMS_OUTPUT.PUT_LINE('Sum of first 100 odd numbers is: ' || sum_odd);
+    DBMS_OUTPUT.PUT_LINE('Sum: ' || sum_odd);
 END;
 /

@@ -1,3 +1,4 @@
+set serveroutput on;
 create or replace procedure show_emp (
 	emp_id in emp.empno%TYPE,
 	pct in emp.sal%TYPE
@@ -19,6 +20,8 @@ declare
 	pct emp.sal%TYPE;
 begin
   	show_emp(7369, 20);
+	select sal into pct from emp where empno = 7369;
+	dbms_output.put_line(pct);
 end;
-
+/
 */

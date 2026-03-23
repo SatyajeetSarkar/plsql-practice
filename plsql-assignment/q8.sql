@@ -1,3 +1,4 @@
+set serveroutput on;
 DECLARE
 	a int;
 BEGIN

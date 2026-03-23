@@ -1,3 +1,4 @@
+set serveroutput on;
 create or replace function count_emp_dept (dept_no in number)
 	return number
 is
@@ -21,4 +22,5 @@ begin
 	emp_count := count_emp_dept (20);
 	dbms_output.put_line(emp_count);
 end;
+/
 */
