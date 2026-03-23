@@ -1,41 +1,37 @@
-set serveroutput on;
-declare
-    cursor emp_cursor is
-        select empno, sal
-        from emp
-        where deptno = (
-            select deptno
-            from dept
-            where dname = 'SALES'
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR emp_cursor IS
+        SELECT empno, sal
+        FROM emp
+        WHERE deptno = (
+            SELECT deptno
+            FROM dept
+            WHERE dname = 'SALES'
         );
 
     v_empno emp.empno%TYPE;
-    old_sal emp.sal%TYPE;
-    new_sal emp.sal%TYPE;
-begin
-    open emp_cursor;
+    v_old_sal emp.sal%TYPE;
+    v_new_sal emp.sal%TYPE;
 
-    dbms_output.put_line('EmpNo  Old_Salary  New_Salary');
-    dbms_output.put_line('----------------------------');
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('EmpNo   Old_Salary   New_Salary');
+    DBMS_OUTPUT.PUT_LINE('--------------------------------');
 
-    loop
-        fetch emp_cursor into v_empno, old_sal;
-        exit when emp_cursor%NOTFOUND;
+    FOR rec IN emp_cursor LOOP
+        v_empno := rec.empno;
+        v_old_sal := rec.sal;
+        v_new_sal := v_old_sal * 1.10;
 
-        new_sal := old_sal * 1.10;
+        UPDATE emp
+        SET sal = v_new_sal
+        WHERE empno = rec.empno;
 
-        dbms_output.put_line(
-            v_empno || '     ' ||
-            old_sal || '        ' ||
-            new_sal
+        DBMS_OUTPUT.PUT_LINE(
+            v_empno || '      ' || v_old_sal || '      ' || v_new_sal
         );
+    END LOOP;
 
-        update emp
-        set sal = new_sal
-        where empno = v_empno;
-    end loop;
-
-    close emp_cursor;
-    commit;
-end;
+    COMMIT;
+END;
 /
